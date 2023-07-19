@@ -1,24 +1,36 @@
 
 import './App.css';
-import Componente1 from './Componentes/NavBar/Componente1';
-import Tarjetas from './Componentes/NavBar/Props';
-import Contador from './Componentes/Contador';
 import NavBar from '../src/Componentes/NavBar/NavBar'
 import ItemListContainer from './Componentes/ItemListContainer/ItemListContainer';
+import {BrowserRouter, Routes, Route } from 'react-router-dom';
+import ItemDetailContainer from "./Componentes/itemDetailContainer/itemDetailContainer"
+import Error from './Componentes/Error';
+
 
 function App() {
   return (
 
     <div className="App">
-        <NavBar/>
-        <ItemListContainer greating=" Bienvenidos a Pro Security. Lideres en productos de seguridad electrónica"/>
-        <Componente1/>
-        <Tarjetas name="Jeronimo" description="Me dedico a..."  img="https://cdn.pixabay.com/photo/2012/04/18/18/16/man-37470_1280.png" />
-        <Tarjetas name="Roger" description="Me dedico a..."  img="https://cdn.pixabay.com/photo/2012/04/18/18/16/man-37470_1280.png" />
-        <Tarjetas name="Rabbit" description="Me dedico a..."  img="https://cdn.pixabay.com/photo/2012/04/18/18/16/man-37470_1280.png" />
-        <Contador/>   
+      <BrowserRouter>
+
+      <NavBar/>
+
+      <Routes>
+
+        <Route path={"/"} element={<ItemListContainer />} />
+        <Route path={"/category/:id"} element={<ItemListContainer />} />
+        <Route path={"/item/:id"} element={<ItemDetailContainer/>} />
+        <Route path={"*"} element={<Error />} />
+        
+
+      </Routes>
+      
+      </BrowserRouter>
+          
     </div>
   );
 }
 
 export default App;
+
+// <Route path={"*"} element={<Error />} />
